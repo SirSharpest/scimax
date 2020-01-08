@@ -317,27 +317,6 @@ http://endlessparentheses.com/define-context-aware-keys-in-emacs.html"
   "alist of custom keymaps for src blocks."
   :group :scimax)
 
-(setq scimax-src-block-keymaps
-      `(("ipython" . ,(let ((map (copy-keymap (make-composed-keymap
-					       `(,elpy-mode-map ,python-mode-map ,pyvenv-mode-map)
-					       org-mode-map))))
-			;; In org-mode I define RET so we f
-			(define-key map (kbd "<return>") 'newline)
-			(define-key map (kbd "C-c C-c") 'org-ctrl-c-ctrl-c)
-			map))
-	("python" . ,(let ((map (copy-keymap (make-composed-keymap
-					      `(,elpy-mode-map ,python-mode-map ,pyvenv-mode-map)
-					      org-mode-map))))
-		       ;; In org-mode I define RET so we f
-		       (define-key map (kbd "<return>") 'newline)
-		       (define-key map (kbd "C-c C-c") 'org-ctrl-c-ctrl-c)
-		       map))
-	("emacs-lisp" . ,(let ((map (copy-keymap (make-composed-keymap `(,lispy-mode-map
-									 ,emacs-lisp-mode-map
-									 ,outline-minor-mode-map)
-								       org-mode-map))))
-			   (define-key map (kbd "C-c C-c") 'org-ctrl-c-ctrl-c)
-			   map))))
 
 (defun scimax-add-keymap-to-src-blocks (limit)
   "Add keymaps to src-blocks defined in `scimax-src-block-keymaps'."
